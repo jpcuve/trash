@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1">
+  <component id="c3b64" class="gui.MyComponent">
+    <constraints>
+      <xy x="59" y="53" width="209" height="72"/>
+      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0"/>
+    </constraints>
+    <properties/>
+  </component>
+</form>

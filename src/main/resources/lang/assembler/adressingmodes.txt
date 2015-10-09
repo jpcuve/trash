@@ -1,0 +1,11 @@
+    txa         ;implied
+    lda #$22    ;immediate
+    ldx $D010   ;absolute
+    ldy $02     ;zero page
+    bpl $2D     ;relative
+    adc $C001,X ;absolute indexed with X
+    inc $F001,Y ;absolute indexed with Y
+    lda $01,X   ;zero page indexed with X
+    lda $01,Y   ;zero page indexed with Y
+    sta ($15,X) ;zero page indexed indirect
+    lsr ($2A),Y ;zero page indirect indexed with Y
