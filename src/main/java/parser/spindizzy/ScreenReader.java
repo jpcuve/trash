@@ -167,6 +167,22 @@ public class ScreenReader {
                 System.out.println("ScreenReader.clue: " + type);
             }
 
+            public void jewel(int x, int y, int z, int id) {
+
+            }
+
+            public void lift(int x, int y, int z, int minz, int maxz, int pause) {
+
+            }
+
+            public void enemy(int x, int y, int z, int type, int inertia) {
+
+            }
+
+            public void puzzle(int x, int y, int z, int r, int ref, int id) {
+
+            }
+
             public void end() {
                 System.out.println("ScreenReader.end");
             }
