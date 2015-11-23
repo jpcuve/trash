@@ -128,7 +128,21 @@ public class ScreenReader {
                 b1 = is.read() & 0xFF;
                 b2 = is.read() & 0xFF;
                 int b3 = is.read() & 0xFF;
-                handler.object(b1, b2, b3);
+                base = (b3 << 16) | (b2 << 8) | b1;
+                y = (base >> 13) & 7;
+                x = (base >> 10) & 7;
+                z = (base >> 7) & 7;
+                String type = "undefined";
+                if ((base & 0x7F) == 1){
+                    type = "jewel";
+                } else if ((base & 0x7) == 2){
+                    type = "lift";
+                } else if ((base & 0x77) == 3){
+                    type = "enemy";
+                } else if ((base & 0x4) == 4){
+                    type = "puzzle";
+                }
+                handler.object(x, y, z, type, base);
                 length -= 3;
             }
             is.read(); // last 0
@@ -149,9 +163,8 @@ public class ScreenReader {
 
             }
 
-            public void object(int b1, int b2, int b3) {
-                System.out.println("ScreenReader.object: " + b1);
-
+            public void object(int x, int y, int z, String type, int data) {
+                System.out.println("ScreenReader.object: " + String.format("(%s,%s,%s):%s", x, y, z, type));
             }
 
             public void reference(int x, int y, int z, int r, int ref) {
@@ -165,22 +178,6 @@ public class ScreenReader {
 
             public void clue(int x, int y, int z, int type) {
                 System.out.println("ScreenReader.clue: " + type);
-            }
-
-            public void jewel(int x, int y, int z, int id) {
-
-            }
-
-            public void lift(int x, int y, int z, int minz, int maxz, int pause) {
-
-            }
-
-            public void enemy(int x, int y, int z, int type, int inertia) {
-
-            }
-
-            public void puzzle(int x, int y, int z, int r, int ref, int id) {
-
             }
 
             public void end() {
