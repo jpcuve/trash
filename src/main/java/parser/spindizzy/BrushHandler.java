@@ -3,7 +3,7 @@ package parser.spindizzy;
 /**
  * Created by jpc on 22/11/2015.
  */
-public interface BrushHandler {
+public interface BrushHandler extends Block {
     void header(int id);
     void reference(int x, int y, int z, int r, int ref);
     void block(int x, int y, int z, int r, String layout, String type);

@@ -1,7 +1,5 @@
 package samples;
 
-import org.jdom.*;
-import org.jdom.output.*;
 
 import javax.activation.DataHandler;
 import javax.mail.*;
@@ -32,13 +30,15 @@ public class XmlMailSender {
 		
 		// part 2: xml
 		MimeBodyPart mbp2 = new MimeBodyPart();
+/*
 		Element e = new Element("test");
 		e.addContent("value");
 		Document d = new Document(e);
 		mbp2.setDataHandler(new DataHandler(new XmlDataSource(d, ENCODING, "myxml")));
 		// mbp2.setContent(s.toString(ENCODING), "text/plain");
 		mp.addBodyPart(mbp2);
-		
+*/
+
 		mm.setContent(mp);
 		mm.setSubject("xml");
 		tr.send(mm, ia);
