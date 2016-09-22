@@ -27,6 +27,14 @@ public class Transfer {
         this(MIRROR_NAME, amount, dest);
     }
 
+    public boolean isPayIn(){
+        return MIRROR_NAME.equals(orig);
+    }
+
+    public boolean isPayOut(){
+        return MIRROR_NAME.equals(dest);
+    }
+
     public String getOrig() {
         return orig;
     }
