@@ -82,17 +82,19 @@ public class Spindizzy {
     }
 
     public static void brushes() throws IOException {
+        final FileOutputStream fos = new FileOutputStream("etc/spindizzy/spindizzy_brushes.bin");
         int start = 0x8A0;
         int brushCount = 0;
         int length;
         while((length = (BUFFER[start + 1] & 0xFF)) != 0){
-            System.out.printf("Brush id: %s 0x%X%n", BUFFER[start] & 0xFF, start);
+            if (BUFFER[start + length - 1] == 0 && BUFFER[start + length - 2] == 0){
+                System.out.printf("Brush id: %s 0x%X%n", BUFFER[start] & 0xFF, start);
+                fos.write(BUFFER, start, length);
+            }
             start += length;
             brushCount++;
         }
         System.out.printf("Brush count: %s%n", brushCount);
-        final FileOutputStream fos = new FileOutputStream("etc/spindizzy/spindizzy_brushes.bin");
-        fos.write(BUFFER, 0x8A0, start - 0x8A0);
         fos.flush();
         fos.close();
     }
@@ -137,7 +139,6 @@ public class Spindizzy {
 
 
     public static void main(String[] args) throws IOException {
-/*
         final InputStream is = ClassLoader.getSystemResourceAsStream("spindizzy/freeze.c64");
         int read, length = 0;
         while ((read = is.read(BUFFER, length, BUFFER.length - length)) >= 0){
@@ -145,9 +146,10 @@ public class Spindizzy {
         }
         System.out.printf("File length: %s%n", length);
         brushes();
-*/
+/*
         outputBrushesAsJson();
         outputScreensAsJson();
+*/
 
 
     }
