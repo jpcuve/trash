@@ -11,8 +11,9 @@ public class CountryCode {
         String line;
         while ((line = scanner.nextLine()) != null){
             final String[] ss = line.split(",");
-            System.out.println(ss);
-            break;
+            final String countryName = ss[0];
+            final String phoneCode = ss[8];
+            System.out.printf("%s %s%n", countryName, phoneCode);
         }
         scanner.close();
     }
