@@ -16,7 +16,10 @@ public class FpVec extends FpMat implements Vec<Double> {
 
     @Override
     public FpVec add(Vec<Double> v) {
-        final FpMat m = super.add(v);
-        return new FpVec(m.data);
+        return new FpVec(super.add(v).data);
+    }
+
+    public FpVec scalar(double aDouble){
+        return new FpVec(super.scalar(aDouble).data);
     }
 }
