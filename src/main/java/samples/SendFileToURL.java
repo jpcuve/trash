@@ -1,13 +1,12 @@
 package samples;
 
-import sun.misc.BASE64Encoder;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Base64;
 
 public class SendFileToURL {
 	
@@ -33,7 +32,7 @@ public class SendFileToURL {
 		    conn.setRequestMethod("POST");
 		    conn.setRequestProperty("Content-Type", "text/xml");
 			
-			String encoding = new BASE64Encoder().encode((USERNAME + ":" + PASSWORD).getBytes());
+			String encoding = new String(Base64.getEncoder().encode((USERNAME + ":" + PASSWORD).getBytes()));
 		    conn.setRequestProperty ("Authorization", "Basic " + encoding);
 			
 		    conn.setDoOutput(true);

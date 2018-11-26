@@ -1,7 +1,6 @@
 package api.crypto;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import sun.misc.BASE64Decoder;
 
 import java.io.*;
 import java.security.KeyFactory;
@@ -12,6 +11,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Base64;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,7 +33,7 @@ public class MakePKCS12KeyStore {
         if (line.indexOf("-----BEGIN") != 0) throw new UnsupportedEncodingException("file is not base64 encoded");
         StringBuilder sb = new StringBuilder();
         while ((line = reader.readLine()) != null && line.indexOf("-----END") != 0) sb.append(line);
-        byte[] keyData = new BASE64Decoder().decodeBuffer(sb.toString());
+        byte[] keyData = Base64.getDecoder().decode(sb.toString());
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyData);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         PrivateKey alicePrivateKey = keyFactory.generatePrivate(keySpec);

@@ -7,13 +7,12 @@
  */
 package samples;
 
-import sun.misc.BASE64Encoder;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.security.cert.Certificate;
+import java.util.Base64;
 
 public class HttpsClient {
     public static final String DESTINATION = "https://jpc.asusserver.transwide.com:8443/https-server";
@@ -36,7 +35,7 @@ public class HttpsClient {
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "text/plain");
 
-        String encoding = new BASE64Encoder().encode((USERNAME + ":" + PASSWORD).getBytes());
+        String encoding = new String(Base64.getEncoder().encode((USERNAME + ":" + PASSWORD).getBytes()));
         conn.setRequestProperty ("Authorization", "Basic " + encoding);
         conn.setDoInput(true);
         conn.setDoOutput(true);

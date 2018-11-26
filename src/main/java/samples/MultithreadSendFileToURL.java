@@ -1,13 +1,13 @@
 package samples;
 
-import sun.misc.BASE64Encoder;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 public class MultithreadSendFileToURL extends Thread {
 	private static final int NB_THREADS = 10;
@@ -30,7 +30,7 @@ public class MultithreadSendFileToURL extends Thread {
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "text/xml");
 			
-			String encoding = new BASE64Encoder().encode((USERNAME + ":" + PASSWORD).getBytes());
+			String encoding = new String(Base64.getEncoder().encode((USERNAME + ":" + PASSWORD).getBytes()), StandardCharsets.UTF_8);
 			conn.setRequestProperty ("Authorization", "Basic " + encoding);
 			
 			conn.setDoOutput(true);

@@ -1,6 +1,5 @@
 package net.nio.protocol.ftp;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import net.nio.Dispatcher;
 import net.nio.ErrorHandler;
 import net.nio.MemoryBuffer;
@@ -34,9 +33,11 @@ public class FtpTransferer implements SelectorHandler {
     private SocketChannel socketChannel = null;
     private ReadableByteChannel readableByteChannel = null;
     private WritableByteChannel writableByteChannel = null;
+/*
     private Message uploadMessage = null;
     private String uploadName = null;
     private boolean uploadForce = false;
+*/
     private ByteBuffer byteBuffer;
     private State state = State.Idle;
     private boolean open = true;

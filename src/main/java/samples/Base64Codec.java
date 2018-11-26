@@ -1,6 +1,6 @@
 package samples;
 
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 public class Base64Codec {
 	private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -50,6 +50,6 @@ public class Base64Codec {
 			b[i] = (byte)i;
 		}
 		System.out.println(encode(b));
-		System.out.println(new BASE64Encoder().encode(b));
+		System.out.println(new String(Base64.getEncoder().encode(b)));
 	}
 }
